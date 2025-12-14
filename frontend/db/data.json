@@ -1,0 +1,32 @@
+{
+  "hero": {
+    "title": "Individual consultations through coaching"
+  },
+
+  "problems": {
+    "title": "Is This Your Current Reality?",
+    "semiTitle": "If you recognize yourself in these challenges, the BLive Coaching method is your path to clarity and growth.",
+    "problem_one": {
+      "icon": "icon",
+      "title": "Burnout & Stagnation",
+      "description": "You've hit a financial ceiling or are tired of the 'Groundhog Day' routine. You have success, but you lack true joy and energy.",
+      "solution": "Focus & Energy. Regain motivation and find new, inspiring goals."
+    },
+    "problem_two": {
+      "icon": "icon",
+      "title": "Lack of Clarity",
+      "description": "You constantly postpone important decisions, can't structure your ideas, or are unsure where to grow next.",
+      "solution": "Clear Action Plan. Turn chaos into a step-by-step strategy for immediate growth."
+    },
+    "problem_three": {
+      "icon": "icon",
+      "title": "Imposter Syndrome",
+      "description": "You doubt your professionalism, fear delegating, or rely too heavily on the opinions of others.",
+      "solution": "Mental Resilience. Learn to manage self-doubt and establish yourself as an authentic leader."
+    },
+    "link": {
+      "title": "Discover the BLive Coaching Method",
+      "link": ""
+    }
+  }
+}
