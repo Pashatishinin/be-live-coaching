@@ -2,6 +2,7 @@ import Image from "next/image";
 import { HeroSection } from "./components/HeroSection/HeroSection";
 import { ProblemsSection } from "./components/ProblemsSection/ProblemsSection";
 import dataJson from "../../db/data.json";
+import { BenefitsSection } from "./components/BenefitsSection/BenefitsSection";
 
 export default function Home() {
   return (
@@ -67,6 +68,7 @@ export default function Home() {
     <>
       <HeroSection />
       <ProblemsSection data={dataJson} />
+      <BenefitsSection data={dataJson} />
     </>
   );
 }

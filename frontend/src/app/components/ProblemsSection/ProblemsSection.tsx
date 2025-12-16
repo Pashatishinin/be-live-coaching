@@ -1,5 +1,6 @@
-import { TbBattery1 } from "react-icons/tb";
+import { ChevronRight } from "lucide-react";
 import dataJson from "../../../../db/data.json";
+import { Button } from "@/ui/Button/Button";
 
 type DataStructure = typeof dataJson;
 
@@ -10,7 +11,7 @@ interface ProblemsSectionProps {
 export const ProblemsSection = ({ data }: ProblemsSectionProps) => {
   console.log(data?.problems.title);
   return (
-    <section className="h-screen w-screen p-28 bg-[#E7EBFA] text-[#242424]">
+    <section className="min-h-screen w-screen px-28 py-16  bg-[#E7EBFA] text-[#242424] flex flex-col items-center">
       <h2 className="tracking-tight text-[64px] font-literata font-bold text-center ">
         {data?.problems.title}
       </h2>
@@ -98,6 +99,13 @@ export const ProblemsSection = ({ data }: ProblemsSectionProps) => {
           </div>
         </div>
       </div>
+
+      <Button
+        title="See How the Process Works"
+        children={<ChevronRight size={20} />}
+        secondary={true}
+        width="w-90"
+      />
     </section>
   );
 };
