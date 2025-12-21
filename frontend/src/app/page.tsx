@@ -3,6 +3,9 @@ import { HeroSection } from "./components/HeroSection/HeroSection";
 import { ProblemsSection } from "./components/ProblemsSection/ProblemsSection";
 import dataJson from "../../db/data.json";
 import { BenefitsSection } from "./components/BenefitsSection/BenefitsSection";
+import { HowToChooseCoachSection } from "./components/HowToChooseCoachSection/HowToChooseCoachSection";
+import { FeedbacksSection } from "./components/FeedbacksSection/FeedbacksSection";
+import { FAQSection } from "./components/FAQSection/FAQSection";
 
 export default function Home() {
   return (
@@ -69,6 +72,9 @@ export default function Home() {
       <HeroSection />
       <ProblemsSection data={dataJson} />
       <BenefitsSection data={dataJson} />
+      <HowToChooseCoachSection />
+      <FeedbacksSection />
+      <FAQSection />
     </>
   );
 }

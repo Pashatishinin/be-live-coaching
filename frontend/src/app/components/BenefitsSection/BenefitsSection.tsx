@@ -6,6 +6,7 @@ import { useRef } from "react";
 import useParallax from "@/hooks/useParallax";
 import { ChevronRight, MessagesSquare } from "lucide-react";
 import { Button } from "@/ui/Button/Button";
+import { BenefitsItem } from "@/ui/BenefitsItem/BenefitsItem";
 
 type DataStructure = typeof dataJson;
 
@@ -21,9 +22,9 @@ export const BenefitsSection = ({ data }: BenefitsSectionProps) => {
 
   return (
     <section className="min-h-screen p-16 bg-white">
-      <div className="flex justify-between">
-        <div className="w-2/5">
-          <div className="w-full overflow-y-clip flex justify-center items-center ">
+      <div className="grid grid-cols-2">
+        <div className="">
+          <div className="w-full overflow-clip flex flex-1 justify-center items-center ">
             <div ref={imgRef}>
               <Image
                 src="/photo/6.JPG"
@@ -44,119 +45,24 @@ export const BenefitsSection = ({ data }: BenefitsSectionProps) => {
           </div>
         </div>
 
-        <div className="w-140 flex flex-col gap-8 justify-center">
-          <div className="flex gap-6">
-            <div className="w-67 relative text-[#242424] font-montserrat h-full text-center">
-              <Image
-                src={data?.benefits.benefit_one.image || ""}
-                alt="Vercel logomark"
-                sizes="100vw"
-                width={300}
-                height={300}
-                // fill={true}
-                style={{
-                  // width: "100%",
-                  height: "auto",
-                  scale: "130%",
-                  transformOrigin: "center center",
-                  position: "absolute",
-                  top: "-50%",
-                  left: "-50%",
-                  opacity: "20%",
-                  // Используйте transform, т.к. scale - это сокращение Tailwind
-                }}
-              />
-
-              <div className="flex flex-col gap-5">
-                <h6 className="font-bold">
-                  {data?.benefits.benefit_one.title}
-                </h6>
-                <p>{data?.benefits.benefit_one.description}</p>
-              </div>
-            </div>
-            <div className="w-1/2 relative text-[#242424] font-montserrat h-full text-center">
-              <Image
-                src={data?.benefits.benefit_two.image || ""}
-                alt="Vercel logomark"
-                sizes="100vw"
-                width={300}
-                height={300}
-                // fill={true}
-                style={{
-                  // width: "100%",
-                  height: "auto",
-                  scale: "130%",
-                  transformOrigin: "center center",
-                  position: "absolute",
-                  top: "-50%",
-                  right: "-30%",
-                  opacity: "20%",
-                  // Используйте transform, т.к. scale - это сокращение Tailwind
-                }}
-              />
-              <div className="flex flex-col gap-5">
-                <h6 className="font-bold">
-                  {data?.benefits.benefit_two.title}
-                </h6>
-                <p>{data?.benefits.benefit_two.description}</p>
-              </div>
-            </div>
-          </div>
-          <div className="flex gap-6">
-            <div className="w-1/2 relative text-[#242424] font-montserrat h-full text-center">
-              <Image
-                src={data?.benefits.benefit_three.image || ""}
-                alt="Vercel logomark"
-                sizes="100vw"
-                width={300}
-                height={300}
-                // fill={true}
-                style={{
-                  // width: "100%",
-                  height: "auto",
-                  scale: "130%",
-                  transformOrigin: "center center",
-                  position: "absolute",
-                  bottom: "-10%",
-                  left: "-50%",
-                  opacity: "20%",
-                  // Используйте transform, т.к. scale - это сокращение Tailwind
-                }}
-              />
-              <div className="flex flex-col gap-5">
-                <h6 className="font-bold">
-                  {data?.benefits.benefit_three.title}
-                </h6>
-                <p>{data?.benefits.benefit_three.description}</p>
-              </div>
-            </div>
-            <div className="w-1/2 relative text-[#242424] font-montserrat h-full text-center ">
-              <Image
-                src={data?.benefits.benefit_four.image || ""}
-                alt="Vercel logomark"
-                sizes="100vw"
-                width={300}
-                height={300}
-                // fill={true}
-                style={{
-                  // width: "100%",
-                  height: "auto",
-                  scale: "130%",
-                  transformOrigin: "center center",
-                  position: "absolute",
-                  bottom: "-10%",
-                  right: "-30%",
-                  opacity: "20%",
-                  // Используйте transform, т.к. scale - это сокращение Tailwind
-                }}
-              />
-              <div className="flex flex-col gap-5">
-                <h6 className="font-bold">
-                  {data?.benefits.benefit_four.title}
-                </h6>
-                <p>{data?.benefits.benefit_four.description}</p>
-              </div>
-            </div>
+        <div className="w-150 flex flex-col gap-8 justify-center ">
+          <div className="grid grid-cols-2 gap-6">
+            <BenefitsItem
+              data={data?.benefits.benefit_one}
+              position={{ top: "-50%", left: "-50%" }}
+            />
+            <BenefitsItem
+              data={data?.benefits.benefit_two}
+              position={{ top: "-50%", right: "-30%" }}
+            />
+            <BenefitsItem
+              data={data?.benefits.benefit_three}
+              position={{ bottom: "-10%", left: "-50%" }}
+            />
+            <BenefitsItem
+              data={data?.benefits.benefit_four}
+              position={{ bottom: "-10%", right: "-30%" }}
+            />
           </div>
           <Button
             title="See How the Process Works"
