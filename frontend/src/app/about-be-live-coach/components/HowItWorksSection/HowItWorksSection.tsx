@@ -1,3 +1,5 @@
+import TextEffect from "@/animations/TextEffect";
+
 const data = [
   {
     text: "BLive Coaching offers a space for meaningful change, where authenticity, growth, and support are at the heart of every journey.",
@@ -24,14 +26,18 @@ const data = [
 
 export const HowItWorksSection = () => {
   return (
-    <section className="px-29 py-28 bg-[#E7EBFA] text-[#242424] h-screen flex justify-between">
-      <h3 className="tracking-tight text-[40px] font-literata font-bold  leading-[90%]">
-        How It Works?
-      </h3>
+    <section className="px-29 py-28 bg-[#E7EBFA] text-[#242424] h-full flex justify-between">
+      <TextEffect>
+        <h3 className="tracking-tight text-[40px] font-literata font-bold  leading-[90%]">
+          How It Works?
+        </h3>
+      </TextEffect>
       <div className="flex flex-col gap-4 max-w-183">
         {data.map((index, i) => (
           <div key={i}>
-            <p className="font-montserrat">{index.text}</p>
+            <TextEffect>
+              <p className="font-montserrat">{index.text}</p>
+            </TextEffect>
           </div>
         ))}
       </div>

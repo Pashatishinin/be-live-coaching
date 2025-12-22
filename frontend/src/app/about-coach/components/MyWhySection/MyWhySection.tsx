@@ -1,5 +1,6 @@
 "use client";
 
+import TextEffect from "@/animations/TextEffect";
 import useParallax from "@/hooks/useParallax";
 import { useRef } from "react";
 
@@ -36,17 +37,23 @@ export const MyWhySection = () => {
       </div>
       <div className="w-[384px] flex flex-col gap-20">
         <div>
-          <p className="font-montserrat font-semibold">
-            Why I desiced became coach
-          </p>
-          <h2 className="font-literata text-[64px] font-bold tracking-tight leading-[90%]">
-            My Why
-          </h2>
+          <TextEffect>
+            <p className="font-montserrat font-semibold">
+              Why I desiced became coach
+            </p>
+          </TextEffect>
+          <TextEffect>
+            <h2 className="font-literata text-[64px] font-bold tracking-tight leading-[90%]">
+              My Why
+            </h2>
+          </TextEffect>
         </div>
         <div className="flex flex-col gap-4">
           {data.map((index, i) => (
             <div key={i}>
-              <p className="font-montserrat">{index.text}</p>
+              <TextEffect>
+                <p className="font-montserrat">{index.text}</p>
+              </TextEffect>
             </div>
           ))}
         </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import TextEffect from "@/animations/TextEffect";
 import useParallax from "@/hooks/useParallax";
 import { Button } from "@/ui/Button/Button";
 import { ChevronDown } from "lucide-react";
@@ -12,9 +13,11 @@ export const HeroSection = () => {
   return (
     <section className="bg-[#E7EBFA] text-[#242424] h-full">
       <div className="px-29 pt-29 pb-20 max-w-250">
-        <h2 className="tracking-tight text-[64px] font-literata font-bold  leading-[90%]">
-          What is BLive Coaching and how it works? 
-        </h2>
+        <TextEffect>
+          <h2 className="tracking-tight text-[64px] font-literata font-bold  leading-[90%]">
+            What is BLive Coaching and how it works? 
+          </h2>
+        </TextEffect>
         <Button
           title="Scroll to read more"
           children={<ChevronDown size={20} />}

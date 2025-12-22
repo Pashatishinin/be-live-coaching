@@ -1,5 +1,6 @@
 "use client";
 
+import TextEffect from "@/animations/TextEffect";
 import useParallax from "@/hooks/useParallax";
 import { useRef } from "react";
 
@@ -31,14 +32,18 @@ export const AboutSection = () => {
         </div>
       </div>
       <div className="max-w-150 flex flex-col gap-6">
-        <h3 className="tracking-tight text-[40px] font-literata font-bold  leading-[90%]">
-          At BLive Coaching, our philosophy is shaped by three guiding concepts:
-          Being, Living, and Believing.
-        </h3>
+        <TextEffect>
+          <h3 className="tracking-tight text-[40px] font-literata font-bold  leading-[90%]">
+            At BLive Coaching, our philosophy is shaped by three guiding
+            concepts: Being, Living, and Believing.
+          </h3>
+        </TextEffect>
         <div className="flex flex-col gap-4">
           {data.map((index, i) => (
             <div key={i}>
-              <p className="font-montserrat">{index.text}</p>
+              <TextEffect>
+                <p className="font-montserrat">{index.text}</p>
+              </TextEffect>
             </div>
           ))}
         </div>

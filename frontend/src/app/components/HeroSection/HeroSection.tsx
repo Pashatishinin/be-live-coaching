@@ -1,5 +1,6 @@
 "use client";
 
+import TextEffect from "@/animations/TextEffect";
 import useParallax from "@/hooks/useParallax";
 import { Button } from "@/ui/Button/Button";
 import { MessagesSquare } from "lucide-react";
@@ -13,9 +14,11 @@ export const HeroSection = () => {
     <section className="relative h-screen">
       <div className="w-scren h-screen p-16">
         <div className="absolute bottom-30 w-4/7 flex flex-col gap-8">
+          {/* <TextEffect> */}
           <h1 className="tracking-tight font-literata font-bold text-[100px] leading-[90%] ">
             Individual consultations through coaching
           </h1>
+          {/* </TextEffect> */}
 
           <Button
             children={<MessagesSquare size={20} />}
@@ -24,20 +27,13 @@ export const HeroSection = () => {
           />
         </div>
       </div>
-      <div className="absolute top-0 z-[-1] h-screen overflow-clip">
+
+      <div className="absolute top-0 z-[-1] overflow-hidden w-full xl:w-screen h-full justify-end hidden sm:flex ">
         <div ref={imgRef}>
-          <Image
+          <img
             src="/photo/1.JPG"
-            alt="Vercel logomark"
-            sizes="100vw"
-            width={1920}
-            height={1080}
-            style={{
-              width: "100%",
-              height: "auto",
-              // scale: "130%",
-              transform: "scale(1.3)",
-            }}
+            alt=""
+            className={` scale-130 w-full xl:w-auto object-cover object-center rounded-sm`}
           />
         </div>
       </div>

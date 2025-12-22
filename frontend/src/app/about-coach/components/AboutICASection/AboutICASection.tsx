@@ -1,3 +1,5 @@
+import TextEffect from "@/animations/TextEffect";
+
 const data = [
   {
     title: "About International Coach Academy (ICA)",
@@ -12,14 +14,20 @@ const data = [
 export const AboutICASection = () => {
   return (
     <section className="h-full bg-white px-29 py-29 text-[#242424] flex justify-between">
-      <h3 className="max-w-112.5 font-literata text-[40px] font-bold tracking-tight leading-[90%]">
-        About International Coach Academy
-      </h3>
+      <TextEffect>
+        <h3 className="max-w-112.5 font-literata text-[40px] font-bold tracking-tight leading-[90%]">
+          About International Coach Academy
+        </h3>
+      </TextEffect>
       <div className="flex flex-col gap-6 max-w-175">
         {data.map((index, i) => (
           <div key={i}>
-            <p className="font-montserrat font-semibold">{index.title}</p>
-            <p className="font-montserrat">{index.text}</p>
+            <TextEffect>
+              <p className="font-montserrat font-semibold">{index.title}</p>
+            </TextEffect>
+            <TextEffect>
+              <p className="font-montserrat">{index.text}</p>
+            </TextEffect>
           </div>
         ))}
       </div>

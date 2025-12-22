@@ -1,5 +1,6 @@
 "use client";
 
+import TextEffect from "@/animations/TextEffect";
 import useParallax from "@/hooks/useParallax";
 import { useRef } from "react";
 
@@ -24,13 +25,17 @@ export const HeroSection = () => {
   return (
     <section className="py-28 bg-[#E7EBFA] h-full flex  text-[#242424] justify-between">
       <div className="max-w-192.5 pl-32 pr-20 py-18.5 flex flex-col gap-6">
-        <h2 className="font-literata text-[64px] font-bold tracking-tight leading-[90%]">
-          About Me
-        </h2>
+        <TextEffect>
+          <h2 className="font-literata text-[64px] font-bold tracking-tight leading-[90%]">
+            About Me
+          </h2>
+        </TextEffect>
         <div className="flex flex-col gap-4">
           {data.map((index, i) => (
             <div key={i}>
-              <p className="font-montserrat">{index.text}</p>
+              <TextEffect delay={0.4 * i}>
+                <p className="font-montserrat">{index.text}</p>
+              </TextEffect>
             </div>
           ))}
         </div>
