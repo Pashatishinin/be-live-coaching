@@ -6,6 +6,7 @@ import { BenefitsSection } from "./components/BenefitsSection/BenefitsSection";
 import { HowToChooseCoachSection } from "./components/HowToChooseCoachSection/HowToChooseCoachSection";
 import { FeedbacksSection } from "./components/FeedbacksSection/FeedbacksSection";
 import { FAQSection } from "./components/FAQSection/FAQSection";
+import { BlogSection } from "./components/BlogSection/BlogSection";
 
 export default function Home() {
   return (
@@ -75,6 +76,7 @@ export default function Home() {
       <HowToChooseCoachSection />
       <FeedbacksSection />
       <FAQSection />
+      <BlogSection />
     </>
   );
 }
