@@ -1,3 +1,4 @@
+import TextEffect from "@/animations/TextEffect";
 import { Star } from "lucide-react";
 import Image from "next/image";
 
@@ -27,9 +28,11 @@ export const FeedbackItem = ({ data }: FeedbackItemProps) => {
             />
           ))}
         </div>
-        <p className="font-montserrat font-bold text-[24px] text-center">
-          {data.text}
-        </p>
+        <TextEffect>
+          <p className="font-montserrat font-bold text-[24px] text-center">
+            {data.text}
+          </p>
+        </TextEffect>
         <div className="flex gap-5 items-center">
           <div className="relative w-16 h-16 overflow-hidden rounded-full border border-gray-100">
             <Image

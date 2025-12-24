@@ -1,6 +1,8 @@
 import Image from "next/image";
 
 import dataJson from "../../../db/data.json";
+import TextEffect from "@/animations/TextEffect";
+import BlurAnimation from "@/animations/BlurAnimation";
 
 type BenefitItemData = typeof dataJson.benefits.benefit_one;
 
@@ -22,26 +24,33 @@ export const BenefitsItem = ({
 }: BenefitsItemProps) => {
   return (
     <div className=" relative text-[#242424] font-montserrat h-full text-center ">
-      <Image
-        src={data?.image || ""}
-        alt="Vercel logomark"
-        sizes="100vw"
-        width={300}
-        height={300}
-        style={{
-          height: "auto",
-          transformOrigin: "center center",
-          position: "absolute",
-          bottom: position.bottom,
-          right: position.right,
-          top: position.top,
-          left: position.left,
-          opacity: "20%",
-        }}
-      />
+      <BlurAnimation>
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <Image
+            src={data?.image || ""}
+            alt="background deco"
+            width={300}
+            height={300}
+            style={{
+              height: "auto",
+              position: "absolute",
+              top: position.top,
+              left: position.left,
+              right: position.right,
+              bottom: position.bottom,
+              opacity: 0.2,
+              transformOrigin: "center center",
+            }}
+          />
+        </div>
+      </BlurAnimation>
       <div className="flex flex-col gap-5">
-        <h6 className="font-bold">{data?.title}</h6>
-        <p>{data?.description}</p>
+        <TextEffect>
+          <h6 className="font-bold">{data?.title}</h6>
+        </TextEffect>
+        <TextEffect>
+          <p>{data?.description}</p>
+        </TextEffect>
       </div>
     </div>
   );
