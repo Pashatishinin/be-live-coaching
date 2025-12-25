@@ -74,12 +74,14 @@ export const faq = defineType({
   ],
   preview: {
     select: {
-      question: 'question_ua',
+      question: 'question_ua.question',
+      subtitle: 'question_ua.answer',
     },
     prepare(selection) {
-      const {question} = selection
+      const {question, subtitle} = selection
       return {
         title: question,
+        subtitle: subtitle,
       }
     },
   },

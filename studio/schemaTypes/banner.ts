@@ -13,8 +13,15 @@ export const banner = defineType({
   icon: PresentationIcon,
   fields: [
     defineField({
+      name: 'icon',
+      title: 'Іконка',
+      type: 'reference',
+      to: {type: 'icons'},
+      group: ['ua', 'en', 'de'],
+    }),
+    defineField({
       name: 'banner_content_ua',
-      title: 'Заголовок',
+      title: 'Контент',
       type: 'object',
       group: 'ua',
       fields: [
@@ -32,45 +39,39 @@ export const banner = defineType({
     }),
     defineField({
       name: 'banner_content_en',
-      title: 'Заголовок',
+      title: 'Content',
       type: 'object',
       group: 'en',
       fields: [
         defineField({
           name: 'title',
-          title: 'Заголовок',
+          title: 'Title',
           type: 'string',
         }),
         defineField({
           name: 'semiTitle',
-          title: 'Підзаголовок',
+          title: 'Subtitle',
           type: 'string',
         }),
       ],
     }),
     defineField({
       name: 'banner_content_de',
-      title: 'Заголовок',
+      title: 'Inhalt',
       type: 'object',
       group: 'de',
       fields: [
         defineField({
           name: 'title',
-          title: 'Заголовок',
+          title: 'Titel',
           type: 'string',
         }),
         defineField({
           name: 'semiTitle',
-          title: 'Підзаголовок',
+          title: 'Untertitel',
           type: 'string',
         }),
       ],
-    }),
-    defineField({
-      name: 'Icon',
-      title: 'Іконка',
-      type: 'reference',
-      to: {type: 'icons'},
     }),
   ],
   preview: {

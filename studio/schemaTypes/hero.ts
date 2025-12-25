@@ -13,6 +13,14 @@ export const hero = defineType({
   icon: PresentationIcon,
   fields: [
     defineField({
+      name: 'img',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      title: 'Картинка',
+    }),
+    defineField({
       name: 'title_ua',
       title: 'Заголовок',
       type: 'string',

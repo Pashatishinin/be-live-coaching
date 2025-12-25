@@ -13,8 +13,16 @@ export const feedbacks = defineType({
   icon: FeedbackIcon,
   fields: [
     defineField({
+      name: 'img',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      title: 'Картинка',
+    }),
+    defineField({
       name: 'feedback_ua',
-      title: 'Запитання',
+      title: 'Відгук',
       type: 'object',
       group: 'ua',
       fields: [
@@ -39,52 +47,66 @@ export const feedbacks = defineType({
 
     defineField({
       name: 'feedback_en',
-      title: 'Question',
+      title: 'Feedback',
       type: 'object',
       group: 'en',
       fields: [
         defineField({
-          name: 'question',
-          title: 'Question',
-          type: 'string',
+          name: 'text',
+          title: 'Text',
+          type: 'text',
         }),
 
         defineField({
-          name: 'answer',
-          title: 'Answer',
-          type: 'text',
+          name: 'name',
+          title: 'Name',
+          type: 'string',
+        }),
+        defineField({
+          name: 'job',
+          title: 'Position',
+          type: 'string',
         }),
       ],
     }),
 
     defineField({
       name: 'feedback_de',
-      title: 'Frage',
+      title: 'Zeugnis',
       type: 'object',
       group: 'de',
       fields: [
         defineField({
-          name: 'question',
-          title: 'Frage',
-          type: 'string',
+          name: 'text',
+          title: 'Text',
+          type: 'text',
         }),
 
         defineField({
-          name: 'answer',
-          title: 'Antwort',
-          type: 'text',
+          name: 'name',
+          title: 'Name',
+          type: 'string',
+        }),
+        defineField({
+          name: 'job',
+          title: 'Position',
+          type: 'string',
         }),
       ],
     }),
   ],
   preview: {
     select: {
-      question: 'question_ua',
+      title: 'feedback_ua.name',
+      subtitle: 'feedback_ua.job',
+      image: 'img',
     },
     prepare(selection) {
-      const {question} = selection
+      const {title, subtitle, image} = selection
       return {
-        title: question,
+        title: title,
+        subtitle: subtitle,
+        media: image,
       }
     },
   },
