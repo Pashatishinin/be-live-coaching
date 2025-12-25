@@ -1,6 +1,7 @@
 import BlurAnimation from "@/animations/BlurAnimation";
 import DrawAnimation from "@/animations/DrawAnimation";
 import TextEffect from "@/animations/TextEffect";
+import { ProblemData } from "../../../lib/types";
 
 interface ProblemItemData {
   icon: string;
@@ -12,7 +13,7 @@ interface ProblemItemData {
 }
 
 interface ProblemItemProps {
-  data?: ProblemItemData;
+  data?: ProblemData;
 }
 
 export const ProblemsItems = ({ data }: ProblemItemProps) => {
@@ -27,16 +28,16 @@ export const ProblemsItems = ({ data }: ProblemItemProps) => {
               xmlns="http://www.w3.org/2000/svg"
               className="w-6 sm:w-15 fill-[#D3C3E0]  "
             >
-              <path d={data?.icon} />
+              <path d={data?.problemIcon} />
             </svg>
           </BlurAnimation>
         </div>
         <div className="flex flex-col gap-2">
           <TextEffect>
-            <h6 className="font-bold">{data?.title}</h6>
+            <h6 className="font-bold">{data?.problem_content_de?.title}</h6>
           </TextEffect>
           <TextEffect>
-            <p>{data?.description}</p>
+            <p>{data?.problem_content_en?.desc}</p>
           </TextEffect>
         </div>
       </div>
@@ -48,14 +49,16 @@ export const ProblemsItems = ({ data }: ProblemItemProps) => {
             xmlns="http://www.w3.org/2000/svg"
             className="h-20 w-full fill-none stroke-[#D3C3E0] stroke-[40px] "
           >
-            <path d={data?.arrow} />
+            <path d={data?.arrowIcon} />
           </svg>
         </DrawAnimation>
         <div className="flex flex-col gap-2 ">
           <TextEffect>
-            <h6 className="font-bold">{data?.solution}</h6>
+            <h6 className="font-bold">{data?.solution_content_de?.title}</h6>
           </TextEffect>
-          <p className="whitespace-pre-line">{data?.solutionDescription}</p>
+          <p className="whitespace-pre-line">
+            {data?.solution_content_de?.desc}
+          </p>
         </div>
       </div>
     </div>

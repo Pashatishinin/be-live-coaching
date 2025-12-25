@@ -56,6 +56,7 @@ export const structure: StructureResolver = (S, context) =>
               S.documentListItem().schemaType('link').id('shared_problem_link').title('Посилання'),
             ]),
         ),
+
       S.listItem()
         .title('Переваги')
         .icon(TrendUpwardIcon)

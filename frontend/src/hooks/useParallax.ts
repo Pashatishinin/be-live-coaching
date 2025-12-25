@@ -10,18 +10,17 @@ const useParallax = <T extends HTMLElement>(
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    const videoElement = elementRef?.current;
-
-    if (!videoElement) return;
+    const target = elementRef?.current;
+    if (!target) return;
 
     const animation = gsap.fromTo(
-      videoElement,
+      target,
       { yPercent: 0 },
       {
         yPercent: yPercent,
         ease: "none",
         scrollTrigger: {
-          trigger: videoElement.parentElement,
+          trigger: target.parentElement,
           start: `top ${top}`,
           end: "bottom top",
           scrub: true,

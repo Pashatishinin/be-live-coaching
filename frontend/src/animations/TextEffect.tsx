@@ -1,19 +1,19 @@
 "use client";
 
-import { useRef, ReactElement, cloneElement } from "react";
+import { useRef, ReactNode } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/all";
 import { useGSAP } from "@gsap/react";
 
-// Регистрируем плагины вне компонента
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 interface TextEffectProps {
-  children: ReactElement<any>;
+  children: ReactNode; // Используем ReactNode вместо ReactElement
   animateOnScroll?: boolean;
   delay?: number;
   start?: string;
+  className?: string;
 }
 
 const TextEffect = ({
@@ -21,75 +21,83 @@ const TextEffect = ({
   animateOnScroll = true,
   delay = 0,
   start = "top 80%",
+  className = "",
 }: TextEffectProps) => {
-  const containerRef = useRef<HTMLElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const splitRef = useRef<SplitText | null>(null);
   const maskSplitRef = useRef<SplitText | null>(null);
 
   const { contextSafe } = useGSAP({ scope: containerRef });
 
   const runSplitAndAnim = contextSafe(() => {
-    if (!containerRef.current || !containerRef.current.innerText.trim()) return;
+    // Безопасная проверка наличия текста
+    if (!containerRef.current || !containerRef.current.textContent?.trim())
+      return;
 
     const el = containerRef.current;
-    const tagsToAdjust = ["H1", "H2", "H3"];
-
-    if (tagsToAdjust.includes(el.tagName)) {
-      el.style.lineHeight = "1.2em";
-    }
+    // Ищем внутри любой текстовый тег или берем сам контейнер
+    const target = el.querySelector("h1, h2, h3, p, span") || el;
 
     if (splitRef.current) splitRef.current.revert();
     if (maskSplitRef.current) maskSplitRef.current.revert();
 
-    maskSplitRef.current = new SplitText(containerRef.current, {
-      type: "lines",
-      linesClass: "overflow-hidden",
-    });
-
-    splitRef.current = new SplitText(maskSplitRef.current.lines, {
-      type: "lines",
-    });
-
-    if (animateOnScroll) {
-      gsap.from(splitRef.current.lines, {
-        yPercent: 100,
-        autoAlpha: 0,
-        stagger: 0.08,
-        duration: 0.8,
-        ease: "power3.out",
-        delay,
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: start,
-          once: true,
-        },
+    try {
+      maskSplitRef.current = new SplitText(target, {
+        type: "lines",
+        linesClass: "overflow-hidden",
       });
-    }
 
-    containerRef.current.removeAttribute("aria-label");
+      if (!maskSplitRef.current.lines?.length) return;
+
+      splitRef.current = new SplitText(maskSplitRef.current.lines, {
+        type: "lines",
+      });
+
+      if (animateOnScroll && splitRef.current.lines) {
+        gsap.from(splitRef.current.lines, {
+          yPercent: 100,
+          autoAlpha: 0,
+          stagger: 0.08,
+          duration: 0.8,
+          ease: "power3.out",
+          delay,
+          scrollTrigger: {
+            trigger: target,
+            start: start,
+            once: true,
+          },
+        });
+      }
+    } catch (e) {
+      console.warn("GSAP TextEffect Error:", e);
+    }
   });
 
   useGSAP(
     () => {
+      // Больше не обращаемся к children.props.children!
+      if (!children) return;
+
       document.fonts.ready.then(() => {
         runSplitAndAnim();
       });
 
-      const handleResize = () => {
-        runSplitAndAnim();
-      };
-
+      const handleResize = () => runSplitAndAnim();
       window.addEventListener("resize", handleResize);
       return () => window.removeEventListener("resize", handleResize);
     },
-    { scope: containerRef }
+    { scope: containerRef, dependencies: [children] }
   );
 
-  return cloneElement(children, {
-    ref: containerRef,
-
-    style: { ...children.props.style, visibility: "visible" },
-  });
+  return (
+    <div
+      ref={containerRef}
+      className={className}
+      style={{ visibility: "visible", position: "relative" }}
+    >
+      {children}
+    </div>
+  );
 };
 
 export default TextEffect;
