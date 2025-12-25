@@ -9,7 +9,6 @@ export const hero = defineType({
     {name: 'ua', title: 'Українська'},
     {name: 'en', title: 'English'},
     {name: 'de', title: 'Deutsch'},
-    {name: 'link', title: 'Посилання'},
   ],
   icon: PresentationIcon,
   fields: [
@@ -17,31 +16,22 @@ export const hero = defineType({
       name: 'title_ua',
       title: 'Заголовок',
       type: 'string',
+      validation: (Rule) => Rule.max(50).error('Заголовок занадто довгий'),
       group: 'ua',
     }),
     defineField({
       name: 'title_en',
       title: 'Title',
       type: 'string',
+      validation: (Rule) => Rule.max(50).error('Заголовок занадто довгий'),
       group: 'en',
     }),
     defineField({
       name: 'title_de',
       title: 'Titel',
       type: 'string',
+      validation: (Rule) => Rule.max(50).error('Заголовок занадто довгий'),
       group: 'de',
-    }),
-    defineField({
-      name: 'link',
-      title: 'Посилання',
-      type: 'object',
-      group: 'link',
-      fields: [
-        {name: 'title_ua', type: 'string', title: 'Заголовок'},
-        {name: 'title_en', type: 'string', title: 'Title'},
-        {name: 'title_de', type: 'string', title: 'Titel'},
-        {name: 'link', type: 'url', title: 'URL'},
-      ],
     }),
   ],
   preview: {

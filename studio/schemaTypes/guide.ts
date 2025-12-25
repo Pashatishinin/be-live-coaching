@@ -1,0 +1,120 @@
+import {defineField, defineType} from 'sanity'
+import {UserIcon} from '@sanity/icons'
+
+export const guide = defineType({
+  name: 'guide',
+  title: 'Як Обрати Коуча',
+  type: 'document',
+  groups: [
+    {name: 'ua', title: 'Українська'},
+    {name: 'en', title: 'English'},
+    {name: 'de', title: 'Deutsch'},
+  ],
+  icon: UserIcon,
+  fields: [
+    defineField({
+      name: 'guide_ua',
+      title: 'Description',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'title',
+          title: 'Title',
+          type: 'string',
+        }),
+        defineField({
+          name: 'semiTitle',
+          title: 'Semi Title',
+          type: 'string',
+        }),
+        defineField({
+          name: 'desc',
+          title: 'Description',
+          type: 'array',
+          validation: (Rule) => Rule.max(4).error('Можна додати не більше 4 описів'),
+          of: [
+            defineField({
+              name: 'desc',
+              title: 'Description',
+              type: 'text',
+              validation: (Rule) => Rule.max(450).error('Текст не може перевищувати 450 символів'),
+            }),
+          ],
+        }),
+      ],
+      group: 'ua',
+    }),
+
+    defineField({
+      name: 'guide_en',
+      title: 'Description',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'title',
+          title: 'Title',
+          type: 'string',
+        }),
+        defineField({
+          name: 'semiTitle',
+          title: 'Semi Title',
+          type: 'string',
+        }),
+        defineField({
+          name: 'desc',
+          title: 'Description',
+          type: 'array',
+          validation: (Rule) => Rule.max(4).error('Можна додати не більше 4 описів'),
+          of: [
+            defineField({
+              name: 'desc',
+              title: 'Description',
+              type: 'text',
+              validation: (Rule) => Rule.max(450).error('Текст не може перевищувати 450 символів'),
+            }),
+          ],
+        }),
+      ],
+      group: 'en',
+    }),
+    defineField({
+      name: 'guide_de',
+      title: 'Description',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'title',
+          title: 'Title',
+          type: 'string',
+        }),
+        defineField({
+          name: 'semiTitle',
+          title: 'Semi Title',
+          type: 'string',
+        }),
+        defineField({
+          name: 'desc',
+          title: 'Description',
+          type: 'array',
+          validation: (Rule) => Rule.max(4).error('Можна додати не більше 4 описів'),
+          of: [
+            defineField({
+              name: 'desc',
+              title: 'Description',
+              type: 'text',
+              validation: (Rule) => Rule.max(450).error('Текст не може перевищувати 450 символів'),
+            }),
+          ],
+        }),
+      ],
+      group: 'de',
+    }),
+  ],
+  preview: {
+    prepare() {
+      return {
+        title: 'Про Коуча',
+      }
+    },
+  },
+})

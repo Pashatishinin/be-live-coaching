@@ -17,9 +17,13 @@ export const link = defineType({
     defineField({name: 'link', type: 'url', title: 'URL', group: ['ua', 'en', 'de']}),
   ],
   preview: {
-    prepare() {
+    select: {
+      title: 'title_ua',
+    },
+    prepare(selection) {
+      const {title} = selection
       return {
-        title: 'Загальне посилання',
+        title: title || 'Посилання',
       }
     },
   },
