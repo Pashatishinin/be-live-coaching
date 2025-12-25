@@ -9,6 +9,7 @@ export const hero = defineType({
     {name: 'ua', title: 'Українська'},
     {name: 'en', title: 'English'},
     {name: 'de', title: 'Deutsch'},
+    {name: 'link', title: 'Посилання'},
   ],
   icon: PresentationIcon,
   fields: [
@@ -29,6 +30,18 @@ export const hero = defineType({
       title: 'Titel',
       type: 'string',
       group: 'de',
+    }),
+    defineField({
+      name: 'link',
+      title: 'Посилання',
+      type: 'object',
+      group: 'link',
+      fields: [
+        {name: 'title_ua', type: 'string', title: 'Заголовок'},
+        {name: 'title_en', type: 'string', title: 'Title'},
+        {name: 'title_de', type: 'string', title: 'Titel'},
+        {name: 'link', type: 'url', title: 'URL'},
+      ],
     }),
   ],
   preview: {
