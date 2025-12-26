@@ -4,8 +4,10 @@ import {
   BookIcon,
   BulbFilledIcon,
   CogIcon,
+  HighlightIcon,
   ImageIcon,
   LinkIcon,
+  ListIcon,
   PresentationIcon,
   RocketIcon,
   SparkleIcon,
@@ -104,6 +106,15 @@ export const structure: StructureResolver = (S, context) =>
         .icon(LinkIcon)
         .child(S.document().schemaType('link').id('main_link').title('Посилання')),
 
+      S.divider(),
+      S.listItem()
+        .title('Блог')
+        .icon(ListIcon)
+        .child(() => S.documentTypeList('blog').title('Пост')),
+      S.listItem()
+        .title('Highlight')
+        .icon(HighlightIcon)
+        .child(S.document().schemaType('highlight').documentId('highlight_blog')),
       S.divider(),
       S.listItem()
         .title('Про Мене')

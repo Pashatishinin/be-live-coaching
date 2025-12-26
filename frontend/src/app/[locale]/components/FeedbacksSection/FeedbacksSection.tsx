@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { Observer } from "gsap/all";
 import { CircleArrowLeft, CircleArrowRight } from "lucide-react";
 import { useCallback, useRef, useState } from "react";
+import { FeedbackData, FeedbackWithUrls } from "../../../../../lib/types";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(Observer);
@@ -35,12 +36,19 @@ const data = [
   },
 ];
 
-export const FeedbacksSection = () => {
+interface FeedbacksSectionProps {
+  data?: FeedbackWithUrls[];
+}
+
+export const FeedbacksSection = ({ data = [] }: FeedbacksSectionProps) => {
   const [index, setIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
+  const totalItems = data?.length;
+
   useGSAP(() => {
+    if (totalItems === 0) return;
     gsap.to(containerRef.current, {
       xPercent: -100 * index,
       duration: 0.8,
@@ -52,7 +60,7 @@ export const FeedbacksSection = () => {
   const next = useCallback(() => {
     if (gsap.isTweening(containerRef.current)) return;
 
-    setIndex((prev) => Math.min(prev + 1, data.length - 1));
+    setIndex((prev) => Math.min(prev + 1, data?.length - 1));
   }, []);
 
   const prev = useCallback(() => {

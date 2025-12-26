@@ -19,6 +19,7 @@ export default async function RootLayout({
   params,
 }: RootLayoutProps) {
   const { locale } = await params;
+  if (locale === "favicon.ico") return null;
 
   let messages;
   try {

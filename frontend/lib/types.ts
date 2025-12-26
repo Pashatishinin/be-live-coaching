@@ -3,6 +3,28 @@ export interface ImageAsset {
   alt?: string;
 }
 
+export interface Content {
+  title: string;
+  desc: string;
+}
+
+export interface BannerContent {
+  title: string;
+  semiTitle: string;
+}
+
+export interface SharedLink {
+  title_ua?: string;
+  title_en?: string;
+  title_de?: string;
+  url?: string;
+}
+
+export interface SVGContent {
+  name: string;
+  svgPath: string;
+}
+
 export interface HeroData {
   title_ua?: string;
   title_en?: string;
@@ -14,18 +36,111 @@ export type HeroWithUrls = Omit<HeroData, "img"> & {
   imageUrl: string | null;
 };
 
-export interface ProblemContent {
-  title: string;
-  desc: string;
+export interface ProblemContentData {
+  problemIcon?: SVGContent;
+  arrowIcon?: SVGContent;
+  problem_content_ua?: Content;
+  problem_content_en?: Content;
+  problem_content_de?: Content;
+  solution_content_ua?: Content;
+  solution_content_en?: Content;
+  solution_content_de?: Content;
 }
 
 export interface ProblemData {
-  problemIcon?: string;
-  arrowIcon?: string;
-  problem_content_ua?: ProblemContent;
-  problem_content_en?: ProblemContent;
-  problem_content_de?: ProblemContent;
-  solution_content_ua?: ProblemContent;
-  solution_content_en?: ProblemContent;
-  solution_content_de?: ProblemContent;
+  items?: ProblemContentData[];
+  sharedLink?: SharedLink;
+}
+
+export interface BenefitContentData {
+  img: ImageAsset;
+  benefit_content_ua: Content;
+  benefit_content_en: Content;
+  benefit_content_de: Content;
+}
+
+export interface BenefitData {
+  items?: BenefitContentData[];
+  sharedLink?: SharedLink;
+  imageSelected?: {
+    img_selected?: ImageAsset;
+  };
+}
+
+export type BenefitWithUrls = Omit<BenefitData, "items" | "imageSelected"> & {
+  imageSelected: {
+    imageUrl: string | null;
+  };
+  items: (Omit<BenefitContentData, "img"> & { imageUrl: string | null })[];
+};
+
+export interface BannerContentData {
+  icon?: SVGContent;
+  banner_content_ua?: BannerContent;
+  banner_content_en?: BannerContent;
+  banner_content_de?: BannerContent;
+}
+
+export interface HomeBannerData {
+  item?: BannerContentData;
+  sharedLink?: SharedLink;
+}
+
+export interface FeedbackContentData {
+  job?: string;
+  name?: string;
+  text?: string;
+}
+
+export interface FeedbackData {
+  img: ImageAsset;
+  feedback_ua?: FeedbackContentData;
+  feedback_en?: FeedbackContentData;
+  feedback_de?: FeedbackContentData;
+}
+
+export type FeedbackWithUrls = Omit<FeedbackData, "img"> & {
+  imageUrl: string | null;
+};
+
+export interface FAQContentData {
+  question?: string;
+  answer?: string;
+}
+
+export interface FAQData {
+  question_ua?: FAQContentData;
+  question_en?: FAQContentData;
+  question_de?: FAQContentData;
+}
+
+export interface BlogContentData {
+  title?: string;
+  subTitle?: string;
+  text?: string;
+}
+
+export interface BlogData {
+  blog_ua?: BlogContentData;
+  blog_en?: BlogContentData;
+  blog_de?: BlogContentData;
+  img?: ImageAsset;
+}
+
+export type BlogWithUrl = Omit<BlogData, "img"> & {
+  imageUrl: string | null;
+};
+
+export interface HighlightContentData {
+  highlight?: BlogData;
+}
+
+export interface HighlightData {
+  highlight?: BlogData;
+  subhighlights?: BlogData[];
+}
+
+export interface HighlightWithUrls {
+  highlight: BlogWithUrl | null;
+  subhighlights: BlogWithUrl[];
 }

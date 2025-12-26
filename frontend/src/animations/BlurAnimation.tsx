@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, ReactElement, cloneElement } from "react";
+import { useRef, ReactNode } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -8,63 +8,99 @@ import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(ScrollTrigger);
 
 interface BlurAnimationProps {
-  children: ReactElement<any>;
+  children: ReactNode; // Изменено на ReactNode для гибкости
   animateOnScroll?: boolean;
   delay?: number;
   start?: string;
-  // По умолчанию анимируем самого ребенка, если селектор не передан
   selector?: string;
+  className?: string; // Добавляем className для внешнего контейнера
 }
 
 const BlurAnimation = ({
   children,
   animateOnScroll = true,
   delay = 0,
-  start = "top 80%",
+  start = "top 85%",
   selector,
+  className = "",
 }: BlurAnimationProps) => {
-  const containerRef = useRef<HTMLElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  const { contextSafe } = useGSAP({ scope: containerRef });
+
+  // Основная функция анимации с защитой через contextSafe
+  const runAnimation = contextSafe(() => {
+    if (!containerRef.current || !animateOnScroll) return;
+
+    const el = containerRef.current;
+
+    // Определяем цели: либо по селектору, либо прямые дочерние элементы
+    let targets: any;
+    if (selector) {
+      targets = el.querySelectorAll(selector);
+    } else {
+      // Если селектор не задан, анимируем всех детей первого уровня
+      targets = el.children;
+    }
+
+    if (!targets || targets.length === 0) return;
+
+    // Сбрасываем предыдущие анимации, если они были (для безопасности при resize/re-render)
+    gsap.killTweensOf(targets);
+
+    gsap.from(targets, {
+      autoAlpha: 0,
+      scale: 1.1,
+      y: 30,
+      filter: "blur(15px)",
+      stagger: 0.15,
+      duration: 1.2,
+      ease: "power2.out",
+      delay,
+      scrollTrigger: {
+        trigger: el,
+        start: start,
+        once: true,
+        // invalidateOnRefresh: true, // Полезно при resize страницы
+      },
+    });
+  });
 
   useGSAP(
     () => {
-      if (!containerRef.current || !animateOnScroll) return;
+      if (!children) return;
 
-      let targets: any;
+      // Защита: ждем отрисовку и шрифты (важно для корректного расчета позиций ScrollTrigger)
+      document.fonts.ready.then(() => {
+        runAnimation();
+      });
 
-      if (selector) {
-        // Если передан селектор, ищем внутри
-        targets = containerRef.current.querySelectorAll(selector);
-      } else {
-        // Если селектора нет, анимируем непосредственно сам элемент (наш div)
-        targets = containerRef.current;
-      }
+      // Защита: перезапуск при изменении размера окна
+      const handleResize = () => {
+        // ScrollTrigger.refresh() обычно достаточно, но если макет меняется радикально:
+        // runAnimation();
+      };
 
-      if (targets) {
-        gsap.from(targets, {
-          autoAlpha: 0,
-          scale: 1.1, // Для div лучше чуть меньше scale, чем для SVG
-          y: 20, // Добавим немного движения по вертикали для "мягкости"
-          filter: "blur(20px)",
-          stagger: 0.1,
-          duration: 1.5,
-          ease: "power3.out",
-          delay,
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: start,
-            once: true,
-          },
-        });
-      }
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
     },
-    { scope: containerRef }
+    { scope: containerRef, dependencies: [children, animateOnScroll] }
   );
 
-  return cloneElement(children, {
-    ref: containerRef,
-    // Важно: гарантируем, что элемент не скрыт через CSS до начала анимации
-    style: { ...children.props.style, visibility: "visible" },
-  });
+  return (
+    <div
+      ref={containerRef}
+      className={className}
+      style={{
+        visibility: "visible",
+        position: "relative",
+        // Убираем overflow: hidden, чтобы блюр не обрезался по краям,
+        // если это не мешает верстке
+      }}
+    >
+      {children}
+    </div>
+  );
 };
 
 export default BlurAnimation;

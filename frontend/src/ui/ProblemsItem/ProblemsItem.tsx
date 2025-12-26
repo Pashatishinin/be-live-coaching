@@ -1,22 +1,22 @@
 import BlurAnimation from "@/animations/BlurAnimation";
 import DrawAnimation from "@/animations/DrawAnimation";
 import TextEffect from "@/animations/TextEffect";
-import { ProblemData } from "../../../lib/types";
-
-interface ProblemItemData {
-  icon: string;
-  arrow: string;
-  title: string;
-  description: string;
-  solution: string;
-  solutionDescription: string;
-}
+import { Content, ProblemContentData, ProblemData } from "../../../lib/types";
+import { useLocale } from "next-intl";
 
 interface ProblemItemProps {
-  data?: ProblemData;
+  data?: ProblemContentData;
 }
 
 export const ProblemsItems = ({ data }: ProblemItemProps) => {
+  // console.log("DATA", data);
+  const locale = useLocale();
+  const problemContent = data?.[
+    `problem_content_${locale}` as keyof ProblemContentData
+  ] as Content | undefined;
+  const solutionContent = data?.[
+    `solution_content_${locale}` as keyof ProblemContentData
+  ] as Content | undefined;
   return (
     <div className="flex flex-col w-1/4 gap-4 justify-between h-120 ">
       <div className="font-montserrat gap-5 flex flex-col items-center  text-center">
@@ -28,16 +28,16 @@ export const ProblemsItems = ({ data }: ProblemItemProps) => {
               xmlns="http://www.w3.org/2000/svg"
               className="w-6 sm:w-15 fill-[#D3C3E0]  "
             >
-              <path d={data?.problemIcon} />
+              <path d={data?.problemIcon?.svgPath} />
             </svg>
           </BlurAnimation>
         </div>
         <div className="flex flex-col gap-2">
           <TextEffect>
-            <h6 className="font-bold">{data?.problem_content_de?.title}</h6>
+            <h6 className="font-bold">{problemContent?.title}</h6>
           </TextEffect>
           <TextEffect>
-            <p>{data?.problem_content_en?.desc}</p>
+            <p>{problemContent?.desc}</p>
           </TextEffect>
         </div>
       </div>
@@ -49,16 +49,14 @@ export const ProblemsItems = ({ data }: ProblemItemProps) => {
             xmlns="http://www.w3.org/2000/svg"
             className="h-20 w-full fill-none stroke-[#D3C3E0] stroke-[40px] "
           >
-            <path d={data?.arrowIcon} />
+            <path d={data?.arrowIcon?.svgPath} />
           </svg>
         </DrawAnimation>
         <div className="flex flex-col gap-2 ">
           <TextEffect>
-            <h6 className="font-bold">{data?.solution_content_de?.title}</h6>
+            <h6 className="font-bold">{solutionContent?.title}</h6>
           </TextEffect>
-          <p className="whitespace-pre-line">
-            {data?.solution_content_de?.desc}
-          </p>
+          <p className="whitespace-pre-line">{solutionContent?.desc}</p>
         </div>
       </div>
     </div>

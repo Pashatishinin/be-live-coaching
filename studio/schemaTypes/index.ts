@@ -14,6 +14,8 @@ import {banner} from './banner'
 import {guide} from './guide'
 import {aboutBLC} from './aboutBLC'
 import {howItWorks} from './howItWorks'
+import {blog} from './blog'
+import {highlight} from './highlight'
 
 export const schemaTypes = [
   hero,
@@ -32,4 +34,6 @@ export const schemaTypes = [
   guide,
   aboutBLC,
   howItWorks,
+  blog,
+  highlight,
 ]

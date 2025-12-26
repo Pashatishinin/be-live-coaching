@@ -39,10 +39,10 @@ export const Button = ({
   }
   return (
     <a
-      className={`${width} ${borderSet} ${bGColor} z-1 my-5 cursor-pointer p-1.25 flex items-center justify-between h-11.5   rounded-xl`}
+      className={`${borderSet} ${bGColor} z-1 my-5 cursor-pointer p-1.25 flex items-center justify-between h-11.5   rounded-xl`}
       href={link}
     >
-      <div className="px-2 font-montserrat font-semibold tracking-tight text-[#242424]">
+      <div className="px-2 font-montserrat font-semibold tracking-tight w-full text-[#242424]">
         {title}
       </div>
       <div

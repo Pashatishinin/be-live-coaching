@@ -1,16 +1,15 @@
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
-
-interface BlogData {
-  title: string;
-  text: string;
-  img: string;
-  link: string;
-  semiTitle: string;
-}
+import {
+  BlogContentData,
+  BlogData,
+  BlogWithUrl,
+  HighlightContentData,
+} from "../../../lib/types";
+import { useLocale } from "next-intl";
 
 interface BlogItemProps {
-  data: BlogData;
+  data?: BlogWithUrl | null;
   flex?: string;
   height?: string;
   padding?: string;
@@ -24,21 +23,40 @@ export const BlogItem = ({
   padding = "p-12",
   text = "text-[40px]",
 }: BlogItemProps) => {
+  const locale = useLocale();
+
+  const contentKey = `blog_${locale}` as keyof BlogWithUrl;
+  const blogContent = (data?.[contentKey] || data?.blog_ua) as
+    | BlogContentData
+    | undefined;
+
+  // const blogContent = data ? (data as any)[`blog_${locale}`] : null;
+  console.log("HIGHLIGHT1", blogContent);
+  console.log("HIGHLIGHT2", data);
   return (
     <div
       className={`rounded-2xl overflow-clip max-w-160 ${flex} ${height} border-[#B8BDD2] border`}
     >
       <div className="relative min-w-[320px] w-full h-90 ">
-        <Image src={data.img} alt={data.title} fill className="object-cover" />
+        {data?.imageUrl && blogContent && (
+          <Image
+            src={data.imageUrl}
+            alt={blogContent?.title || "blogContent image"}
+            fill
+            className="object-cover"
+          />
+        )}
       </div>
 
       <div className={`${padding} flex flex-col gap-8 h-full `}>
         <div className="flex flex-col gap-2">
-          <p className="font-semibold font-montserrat">{data.semiTitle}</p>
+          <p className="font-semibold font-montserrat">
+            {blogContent?.subTitle}
+          </p>
           <h5 className={`font-bold font-montserrat ${text} leading-[90%]`}>
-            {data.title}
+            {blogContent?.title}
           </h5>
-          <p className="font-montserrat">{data.text}</p>
+          <p className="font-montserrat">{blogContent?.text}</p>
         </div>
         <a className="flex items-center gap-2">
           Explore <ChevronRight size={20} />
