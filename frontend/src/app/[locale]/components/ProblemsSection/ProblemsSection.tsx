@@ -28,7 +28,7 @@ export const ProblemsSection = ({ data }: ProblemsSectionProps) => {
     data?.sharedLink?.[`title_${locale}` as keyof SharedLink] ||
     "Discover more";
   return (
-    <section className="min-h-screen w-screen px-28 py-16  bg-[#E7EBFA] text-[#242424] flex flex-col items-center">
+    <section className="h-full w-full px-28 py-16  bg-[#E7EBFA] text-[#242424] flex flex-col items-center">
       <div>
         <TextEffect>
           <h2 className="tracking-tight text-[64px] font-literata font-bold text-center ">

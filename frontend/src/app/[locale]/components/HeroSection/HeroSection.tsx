@@ -36,11 +36,30 @@ export const HeroSection = ({ data, link }: HeroSectionProps) => {
 
   if (!data) return null;
   return (
-    <section className="relative h-screen max-w-screen">
-      <div className="w-full h-screen px-10 py-29 sm:p-29 flex flex-col justify-end">
-        <div className=" w-full sm:w-4/7 flex flex-col items-center sm:items-left gap-8 ">
+    <section className="relative h-screen w-full overflow-x-clip">
+      <div
+        className="w-full h-screen flex flex-col justify-end
+      px-4 py-29 
+      sm:px-10
+      lg:px-16
+      xl:px-29
+      "
+      >
+        <div
+          className="flex flex-col gap-8 
+        w-full items-center 
+        lg:w-4/7 lg:items-start
+        "
+        >
           <TextEffectBlur>
-            <h1 className="tracking-tight font-literata font-bold text-[36px] sm:text-[100px] leading-[90%] text-center ">
+            <h1
+              className="tracking-tight font-literata font-bold leading-[90%] 
+            text-center text-[36px]
+            sm:text-[52px] 
+            md:text-[100px]
+            lg:text-left
+            "
+            >
               {heroTitle}
             </h1>
           </TextEffectBlur>
@@ -53,7 +72,7 @@ export const HeroSection = ({ data, link }: HeroSectionProps) => {
           </div>
         </div>
       </div>
-      <div className="absolute top-0  z-[-1] overflow-hidden w-screen h-204 sm:flex ">
+      <div className="absolute top-0  z-[-1] overflow-hidden w-full h-full sm:flex ">
         <div ref={imgRef} className="relative w-full h-full ">
           {data.imageUrl && (
             <img

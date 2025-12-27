@@ -102,8 +102,8 @@ export default async function Home() {
     <>
       {/* <Header /> */}
       <HeroSection data={heroWithUrls} link="" />
-      {/* <ProblemsSection data={problems} />
-      <BenefitsSection data={benefitsWithUrl} />
+      <ProblemsSection data={problems} />
+      {/* <BenefitsSection data={benefitsWithUrl} />
       <HowToChooseCoachSection data={banner} />
       <FeedbacksSection data={feedbackWithUrls.items} />
       <FAQSection data={faq} />
