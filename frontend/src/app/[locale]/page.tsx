@@ -100,14 +100,14 @@ export default async function Home() {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <HeroSection data={heroWithUrls} link="" />
-      <ProblemsSection data={problems} />
+      {/* <ProblemsSection data={problems} />
       <BenefitsSection data={benefitsWithUrl} />
       <HowToChooseCoachSection data={banner} />
       <FeedbacksSection data={feedbackWithUrls.items} />
       <FAQSection data={faq} />
-      <BlogSection data={highlightsWithUrls} />
+      <BlogSection data={highlightsWithUrls} /> */}
     </>
   );
 }

@@ -44,16 +44,12 @@ export const ProblemsSection = ({ data }: ProblemsSectionProps) => {
         {data?.items?.map((item, index) => (
           <ProblemsItems data={item} key={index} />
         ))}
-        {/* <ProblemsItems data={data?.problems.problem_one} />
-        <ProblemsItems data={data?.problems.problem_two} />
-        <ProblemsItems data={data?.problems.problem_three} /> */}
       </div>
 
       <Button
         title={buttonTitle}
         children={<ChevronRight size={20} />}
         secondary={true}
-        width="w-90"
         link="/about-be-live-coach"
       />
     </section>
