@@ -1,11 +1,15 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "blivecoaching",
+	"name": "be-live-coaching",
 	"main": ".open-next/worker.js",
 	"compatibility_date": "2025-09-27",
 	"compatibility_flags": ["nodejs_compat"],
 	"assets": {
 		"directory": ".open-next/assets",
 		"binding": "ASSETS"
+	},
+	"vars": {
+		"NEXT_PUBLIC_SANITY_PROJECT_ID": "fsymw50k",
+		"NEXT_PUBLIC_SANITY_DATASET": "production"
 	}
 }
