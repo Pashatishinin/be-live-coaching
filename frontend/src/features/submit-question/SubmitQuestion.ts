@@ -1,6 +1,6 @@
 "use server";
 
-import { writeClient } from "@/shared/lib/sanity.write";
+import { getWriteClient } from "@/shared/lib/sanity.write";
 
 export async function SubmitQuestionForm(prevState: any, formData: FormData) {
 	const message = formData.get("message") as string;
@@ -10,6 +10,7 @@ export async function SubmitQuestionForm(prevState: any, formData: FormData) {
 	}
 
 	try {
+		const writeClient = getWriteClient();
 		await writeClient.create({
 			_type: "faqRequest",
 			message,

@@ -1,6 +1,6 @@
 "use server";
 
-import { writeClient } from "@/shared/lib/sanity.write";
+import { getWriteClient } from "@/shared/lib/sanity.write";
 
 export async function SubmitCallbackForm(prevState: any, formData: FormData) {
 	const fullName = formData.get("fullName") as string;
@@ -23,6 +23,7 @@ export async function SubmitCallbackForm(prevState: any, formData: FormData) {
 	}
 
 	try {
+		const writeClient = getWriteClient();
 		await writeClient.create({
 			_type: "callbackRequest",
 			fullName,

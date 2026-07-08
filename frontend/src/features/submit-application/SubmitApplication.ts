@@ -1,7 +1,8 @@
 "use server";
 
 import { client } from "@/shared/lib/client";
-import { writeClient } from "@/shared/lib/sanity.write";
+
+import { getWriteClient } from "@/shared/lib/sanity.write";
 import { sendAdminNotification } from "../emails/sendAdminNotification";
 import { sendApplicantConfirmation } from "../emails/sendApplicantConfirmation";
 
@@ -12,6 +13,7 @@ export async function SubmitApplication(prevState: any, formData: FormData) {
 	const planName = formData.get("planId") as string;
 
 	try {
+		const writeClient = getWriteClient();
 		const planDoc = await client.fetch(
 			`*[_type == "plan" && (title == $name )][0]`,
 			{ name: planName },
