@@ -6,10 +6,13 @@ import { apiVersion, dataset, projectId } from "./env";
 
 const sanityToken =
 	process.env.SANITY_WRITE_TOKEN || (globalThis as any).env?.SANITY_WRITE_TOKEN;
+
 export const writeClient = createClient({
 	projectId,
 	dataset,
 	apiVersion,
 	useCdn: false,
 	token: sanityToken,
+	stega: false,
+	perspective: "raw",
 });
