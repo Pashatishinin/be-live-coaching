@@ -7,8 +7,8 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export const sendAdminNotification = async (payload: SendEmailData) => {
 	try {
 		const { data, error } = await resend.emails.send({
-			// to: "tishyninpavlo@gmail.com",
-			to: "juliasolodiuk@gmail.com",
+			to: "tishyninpavlo@gmail.com",
+			// to: "juliasolodiuk@gmail.com",
 			from: "BLive Coaching <info@blivecoaching.com>",
 			subject: `Новая заявка: ${payload.applicantName}`,
 			react: AdminNotification({ data: payload }),

@@ -24,6 +24,18 @@ export function getWriteClient() {
 		throw new Error("SANITY_WRITE_TOKEN отсутствует в рантайме");
 	}
 
+	console.log(
+		"DEBUG config:",
+		JSON.stringify({
+			projectId,
+			dataset,
+			apiVersion,
+			tokenStart: sanityToken.slice(0, 4),
+			tokenEnd: sanityToken.slice(-4),
+			tokenLength: sanityToken.length,
+		}),
+	);
+
 	return createClient({
 		projectId,
 		dataset,
