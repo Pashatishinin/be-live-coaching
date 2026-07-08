@@ -29,7 +29,7 @@ export default defineConfig({
 	name: "default",
 	title: "be-live-coaching",
 
-	projectId: "x03vy68c",
+	projectId: "fsymw50k",
 	dataset: "production",
 
 	plugins: [structureTool({ structure }), visionTool()],

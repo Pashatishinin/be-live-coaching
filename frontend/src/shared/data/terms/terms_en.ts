@@ -65,7 +65,6 @@ export const termsDataEN = {
 			title: "8. Changes",
 			content: [
 				"We reserve the right to update these Terms. Continued use of the website or services after changes constitutes acceptance.",
-				"Contact: hello@belivecoaching.com",
 			],
 		},
 	],

@@ -8,8 +8,8 @@ export const sendApplicantConfirmation = async (payload: SendEmailData) => {
 	try {
 		const { data, error } = await resend.emails.send({
 			to: payload.applicantEmail,
-			from: "Be Live Coaching <info@pavlotishynin.com>",
-			subject: "Ми отримали вашу заявку! | Be Live Coaching",
+			from: "BLive Coaching <info@blivecoaching.com>",
+			subject: "Ми отримали вашу заявку! | BLive Coaching",
 			react: ApplicationNotification({ data: payload }),
 		});
 

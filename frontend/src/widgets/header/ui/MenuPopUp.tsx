@@ -96,7 +96,11 @@ export const MenuPopUp = ({ isOpen, onClose, type = "home" }: Props) => {
 				))}
 
 				<div className="block sm:hidden">
-					<Button title="Connect" primary={true}>
+					<Button
+						title="Connect"
+						primary={true}
+						link="mailto:juliasolodiuk@gmail.com"
+					>
 						<MessagesSquare size={20} />
 					</Button>
 				</div>
