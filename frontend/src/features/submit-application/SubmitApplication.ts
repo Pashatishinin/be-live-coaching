@@ -6,7 +6,7 @@ import { sendAdminNotification } from "../emails/sendAdminNotification";
 import { sendApplicantConfirmation } from "../emails/sendApplicantConfirmation";
 
 export async function SubmitApplication(prevState: any, formData: FormData) {
-	console.log("ACTION STARTED", Object.fromEntries(formData.entries()));
+	// console.log("ACTION STARTED", Object.fromEntries(formData.entries()));
 	const fullName = formData.get("fullName") as string;
 	const email = formData.get("email") as string;
 	const planName = formData.get("planId") as string;

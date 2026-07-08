@@ -1,7 +1,7 @@
 import { createClient } from "next-sanity";
 import { apiVersion, dataset, projectId } from "./env";
 
-console.log("Токен загружен:", !!process.env.SANITY_WRITE_TOKEN);
+// console.log("Токен загружен:", !!process.env.SANITY_WRITE_TOKEN);
 // Этот клиент имеет права на запись
 export const writeClient = createClient({
 	projectId,
