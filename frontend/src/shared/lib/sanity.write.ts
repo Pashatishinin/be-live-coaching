@@ -32,5 +32,7 @@ export function getWriteClient() {
 		token: sanityToken,
 		stega: false,
 		perspective: "raw",
+		withCredentials: false,
+		ignoreBrowserTokenWarning: true,
 	});
 }
