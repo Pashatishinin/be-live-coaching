@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import { getSeo } from "../api/seo.api";
 
+const ogLocaleMap: Record<string, string> = {
+	ua: "uk_UA",
+	en: "en_US",
+	de: "de_DE",
+};
+
 export async function constructMetadata(locale: string): Promise<Metadata> {
 	const seo = await getSeo(locale);
 	const baseUrl = "https://be-live-coaching.com";
@@ -9,10 +15,10 @@ export async function constructMetadata(locale: string): Promise<Metadata> {
 	const description = seo?.description || "Default description";
 	const image = seo?.ogImage || "/default-og.png";
 
-	const currentPath = locale === "en" ? "" : `/${locale}`;
-	const canonicalUrl = `${baseUrl}${currentPath}`;
+	const canonicalUrl = `${baseUrl}/${locale}`;
 
 	return {
+		metadataBase: new URL(baseUrl),
 		title,
 		description,
 		alternates: {
@@ -30,7 +36,8 @@ export async function constructMetadata(locale: string): Promise<Metadata> {
 			url: canonicalUrl,
 			images: [{ url: image }],
 			type: "website",
-			locale: locale === "ua" ? "uk_UA" : locale,
+
+			locale: ogLocaleMap[locale] ?? "en_US",
 		},
 		twitter: {
 			card: "summary_large_image",

@@ -42,6 +42,7 @@ export const FeedbackItem = memo(({ data }: FeedbackItemProps) => {
 								src={data.imageUrl}
 								alt={feedbackContent?.name || "User feedback"}
 								fill
+								sizes="64px"
 								className="object-cover"
 							/>
 						)}

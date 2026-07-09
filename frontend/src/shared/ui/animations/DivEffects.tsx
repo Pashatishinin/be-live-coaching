@@ -36,7 +36,7 @@ const DivEffect = ({
 				{
 					y: 150,
 					rotate,
-					opacity: 0.4,
+					// opacity: 0.4,
 					duration: 1,
 					delay,
 					ease: "expo.out",

@@ -43,7 +43,7 @@ export const PlanCard = ({
 			)}
 
 			<div className="p-4 min-h-20">
-				<h5 className="font-bold text-[24px] md:text-[28px]">{title}</h5>
+				<h3 className="font-bold text-[24px] md:text-[28px]">{title}</h3>
 			</div>
 
 			<div

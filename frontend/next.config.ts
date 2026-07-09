@@ -21,6 +21,7 @@ const nextConfig: NextConfig = {
 				port: "",
 			},
 		],
+		qualities: [75, 95, 100],
 	},
 	turbopack: {
 		root: ".",

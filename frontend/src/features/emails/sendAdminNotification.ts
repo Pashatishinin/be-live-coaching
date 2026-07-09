@@ -10,11 +10,10 @@ export const sendAdminNotification = async (payload: SendEmailData) => {
 		const html = await render(AdminNotification({ data: payload }));
 
 		const { data, error } = await resend.emails.send({
-			to: "tishyninpavlo@gmail.com",
-			// to: "juliasolodiuk@gmail.com",
+			// to: "tishyninpavlo@gmail.com",
+			to: "juliasolodiuk@gmail.com",
 			from: "BLive Coaching <info@blivecoaching.com>",
 			subject: `Новая заявка: ${payload.applicantName}`,
-			// react: AdminNotification({ data: payload }),
 			html,
 		});
 

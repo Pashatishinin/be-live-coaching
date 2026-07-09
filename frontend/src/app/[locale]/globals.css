@@ -2,43 +2,40 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+	--background: #ffffff;
+	--foreground: #171717;
 
-  --primary: #D3C3E0;
-  --secondary: #E7EBFA;
+	--primary: #d3c3e0;
+	--secondary: #e7ebfa;
 
-  --font-quincy: "quincy-cf", serif;
-  --font-articulat: "articulat-cf", sans-serif;
+	--font-quincy: "quincy-cf", serif;
+	--font-articulat: "articulat-cf", sans-serif;
 }
 
 @theme inline {
-  --color-primary: var(--primary);
-  --color-secondary: var(--secondary);
+	--color-primary: var(--primary);
+	--color-secondary: var(--secondary);
 
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-header: var(--font-quincy);
-  --font-body: var(--font-articulat);
-
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--font-header: var(--font-quincy);
+	--font-body: var(--font-articulat);
 }
 
-
-
 html {
-  scroll-behavior: smooth;
-  margin: 0 auto; 
-  overflow-x: clip;
+	scroll-behavior: smooth;
+	margin: 0 auto;
+	overflow-x: clip;
 }
 
 body {
-  font-family: var(--font-body);
-  background: var(--background);
-  color: var(--foreground);
-  overflow-x: hidden;
-  max-width: 1920px; 
-  margin: 0 auto; 
-  width: 100%; 
-  display: flex;
-  flex-direction: column;
+	font-family: var(--font-body);
+	background: var(--background);
+	color: var(--foreground);
+	overflow-x: hidden;
+	max-width: 1920px;
+	margin: 0 auto;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
 }
