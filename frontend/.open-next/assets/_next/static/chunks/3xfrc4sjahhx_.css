@@ -1,0 +1,8 @@
+.Button-module-scss-module__KpSqKq__btnWrapper {
+	text-decoration: none;
+	transition: transform 0.8s ease-in-out;
+	display: inline-flex;
+}
+.Button-module-scss-module__KpSqKq__btnWrapper:hover {
+	transform: skewY(-5deg);
+}
