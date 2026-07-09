@@ -7,7 +7,7 @@ out/
 dist/
 build/
 .pnpm-debug.log*
-
+.open-next
 *.log
 .DS_Store
 .env*
@@ -16,4 +16,4 @@ build/
 .vscode/
 .idea/
 
-**/globals.css
+**/globals.css.open-next/
