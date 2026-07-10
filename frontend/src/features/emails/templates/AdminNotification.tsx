@@ -71,7 +71,7 @@ const AdminNotification = ({ data }: AdminNotificationProps) => {
 						<Section className="text-center mb-[32px]">
 							<Button
 								// href="http://localhost:3333/structure/zayavkiVidKliyentiv"
-								href="https://be-live-coaching.vercel.app"
+								href="https://www.sanity.io/@oIvKUmukn/studio/me7jtbjxht9mf3d4hvg8ac9p/default/structure/zayavkiVidKliyentiv"
 								style={{
 									backgroundColor: "#D3C3E0",
 									color: "#242424",
