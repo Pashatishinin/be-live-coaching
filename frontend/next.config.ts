@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
 		return [
 			{
 				source: "/studio",
-				destination: "https://blive-coaching.sanity.studio/",
+				destination: "https://coaching-website.sanity.studio/",
 				permanent: true,
 			},
 		];
