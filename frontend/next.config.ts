@@ -7,9 +7,9 @@ const nextConfig: NextConfig = {
 	async redirects() {
 		return [
 			{
-				source: "/studio",
+				source: "/manage",
 				destination: "https://coaching-website.sanity.studio/",
-				permanent: true,
+				permanent: false,
 			},
 		];
 	},
