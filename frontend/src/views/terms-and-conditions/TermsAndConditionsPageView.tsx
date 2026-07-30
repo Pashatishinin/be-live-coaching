@@ -8,7 +8,7 @@ export default async function TermsAndConditionsPageView() {
 
 	return (
 		<>
-			<Header />
+			<Header type="policy" />
 			<TermsSection />
 			<Footer />
 		</>

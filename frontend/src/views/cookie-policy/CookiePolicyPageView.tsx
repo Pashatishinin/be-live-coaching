@@ -8,7 +8,7 @@ export default async function CookiePolicyPageView() {
 
 	return (
 		<>
-			<Header />
+			<Header type="policy" />
 			<CookieSection />
 			<Footer />
 		</>
